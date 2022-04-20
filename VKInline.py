@@ -24,6 +24,7 @@ class VKInlineMod(loader.Module):
     def __init__(self):
         self.config = loader.ModuleConfig("VK","", lambda: "You VK")
 
+    
     @loader.unrestricted
     async def myvkcmd(self, message: Message) -> None:
         """The command to display your VK"""
