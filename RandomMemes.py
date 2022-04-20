@@ -18,13 +18,14 @@ from telethon import TelegramClient
 @loader.tds
 class RandomMemesMod(loader.Module):
     strings = {"name": "RandomMemes"}
-
+    """Random memes"""
     async def client_ready(self, client: TelegramClient, db):
         self.memes_bot = "@ffmemesbot"
         self._db = db
         self._client = client
     
     async def randmemescmd(self, message: Message) -> None:
+        """Send random memes"""
         async with self._client.conversation(self.memes_bot) as conv:
             mem = await conv.send_message("/start")
             phtmem = await conv.get_response()
