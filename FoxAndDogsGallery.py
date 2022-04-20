@@ -32,7 +32,6 @@ async def randomapi():
         return (await utils.run_sync(requests.get, "https://random.dog/woof.json")).json()["url"]
 
 
-
 @loader.tds
 class FoxGalerryMod(loader.Module):
     """🦊 Foxes, Dogs 🐶"""
