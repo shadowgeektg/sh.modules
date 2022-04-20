@@ -1,3 +1,13 @@
+"""
+
+█▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
+▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
+
+    Copyleft 2022 t.me/shadow_modules
+    This module is free software
+    You can edit this module
+"""
+
 from .. import loader, utils
 from telethon.tl.types import Message
 import telethon
