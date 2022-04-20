@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 # meta developer: @shadow_geektg, @CakesTwix, @Fl1yd
 
-# ================== КОНСТАНТЫ ========================
+# ================== CONSTANS ========================
 
 PROMOTE_RIGHTS = ChatAdminRights(post_messages=True,
                                  add_admins=None,
