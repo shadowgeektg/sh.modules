@@ -21,4 +21,3 @@ class RandomMemesMod(loader.Module):
             await conv.mark_read()
             await message.delete()
             await utils.answer(message, phtmem)
-            
