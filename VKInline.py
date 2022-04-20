@@ -47,3 +47,4 @@ class VKInlineMod(loader.Module):
         else:
             await utils.answer(message, self.strings("httpserr"))
             return
+ 
