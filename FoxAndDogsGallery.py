@@ -8,7 +8,7 @@
     You can edit this module
 """
 
-#meta developer: @shadow_geektg
+#meta developer: @shadow_hikka
 #scope: hikka_only
 
 import requests
