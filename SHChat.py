@@ -37,7 +37,7 @@ from telethon.tl.functions.messages import EditChatAdminRequest
 import asyncio
 logger = logging.getLogger(__name__)
 
-# meta developer: @shadow_geektg, @CakesTwix, @Fl1yd
+# meta developer: @shadow_hikka, @CakesTwix, @Fl1yd
 
 # ================== CONSTANS ========================
 
