@@ -13,7 +13,7 @@ from telethon.tl.types import Message
 import telethon
 from telethon import TelegramClient
 
-# scope: meta developer: @shadow_geektg
+# scope: meta developer: @shadow_hikka
 
 @loader.tds
 class RandomMemesMod(loader.Module):
