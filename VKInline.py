@@ -13,7 +13,7 @@ from telethon.tl.types import Message
 import re
 
 # scope: hikka_only
-# scope: meta developer: @shadow_geektg, @dan_endy
+# scope: meta developer: @shadow_hikka, @dan_endy
 
 @loader.tds
 class VKInlineMod(loader.Module):
