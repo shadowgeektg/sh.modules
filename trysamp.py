@@ -12,7 +12,7 @@ from .. import loader, utils
 from telethon.tl.types import Message
 import random
 
-# scope: meta developer: @shadow_geektg
+# scope: meta developer: @shadow_hikka
 
 @loader.tds
 class TrySampMod(loader.Module):
