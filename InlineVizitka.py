@@ -73,12 +73,12 @@ class InlineVizitkaMod(loader.Module):
             text=self.strings("mysocial"),
             reply_markup=[
                 [
-                    {"text": "🥱 Dicord", "url": self.config["discord"]},
+                    {"text": "🥱 Discord", "url": self.config["discord"]},
                     {"text": "🦢 VK", "url": self.config["VK"]},
                 ],
                 [
-                    {"text": "🔰 Instagram", "url": self.config["inst"]},
-                    {"text": "🎉 Grustnogram", "url": self.config["grustno"]},
+                    {"text": "❤ Instagram", "url": self.config["inst"]},
+                    {"text": "🖤 Grustnogram", "url": self.config["grustno"]},
                 ],
                 [
                     {"text": "🌐 Twitter", "url": self.config["twitter"]},
