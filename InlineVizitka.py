@@ -14,7 +14,7 @@ import logging
 import asyncio
 
 # scope: hikka_only
-# meta developer: @shadow_geektg, @dan_endy, @hikariatama
+# meta developer: @shadow_hikka, @dan_endy, @hikariatama
 
 logger = logging.getLogger(__name__)
 
