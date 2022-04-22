@@ -14,7 +14,7 @@ import logging
 import asyncio
 
 # scope: hikka_only
-# meta developer: @shadow_hikka, @dan_endy, @hikariatama
+# meta developer: @shadow_geektg, @dan_endy, @hikariatama
 
 logger = logging.getLogger(__name__)
 
@@ -26,21 +26,12 @@ class InlineVizitkaMod(loader.Module):
         "mysocial": "<b>✨ My social networks</b>",
         "clickvk": "🦚 VK",
         "httpserr": "<b>❗ Warning ❗\nThe link must start with</b> <code>https://</code>",
-        "novk": "<b>😰 You didn't enter your VK</b>",
-        "nodis": "<b>🌧 You didn't enter your discord</b>",
-        "notwit": "<b>🛑 You didn't enter your twitter</b>",
-        "noinst": "<b>😥 You didn't enter your instagram</b>",
-        "lnknotset": "❌ Link not set",
     }
 
     strings_ru = {
         "mysocial": "<b>✨ Мои соцсети</b>",
         "clickvk": "🦚 VK",
-        "httpserr": "<b>❗ Предупреждение ❗\nСсылка должна начинаться на</b> <code>https://</code>",
-        "novk": "<b>😰 Вы не ввели свой VK</b>",
-        "nodis": "<b>🌧 Вы не ввели свой discord</b>",
-        "notwit": "<b>🛑 Вы не ввели свой twitter</b>",
-        "noinst": "<b>😥 Вы не ввели свой instagram</b>",
+        "httpserr": "<b>❗ Предупреждение ❗\nСсылка должна начинаться на</b> <code>https://</code>"
     }
 
     def __init__(self):
@@ -63,6 +54,12 @@ class InlineVizitkaMod(loader.Module):
             "telegram",
             "🚫 Link not set",
             lambda: "You telegram chanel LINK",
+            "gitlab",
+            "🚫 Link not set",
+            lambda: "You gitlab account LINK",
+            "github",
+            "🚫 Link not set",
+            lambda: "You github account LINK"
         )
 
     @loader.unrestricted
@@ -86,6 +83,10 @@ class InlineVizitkaMod(loader.Module):
                 [
                     {"text": "🌐 Twitter", "url": self.config["twitter"]},
                     {"text": "💫 TG Channel", "url": self.config["telegram"]},
+                ],
+                [
+                    {"text": "🌚 GitHub", "url": self.config["github"]},
+                    {"text": "☀ GitLab", "url": self.config["gitlab"]},
                 ],
             ],
         )
