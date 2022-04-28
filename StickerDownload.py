@@ -31,13 +31,17 @@ class StickerDownloadMod(loader.Module):
         await utils.dnd(client, self.memes_bot, True)
     
     async def stickdowncmd(self, message: Message) -> None:
-        try:
-            async with self._client.conversation(self.memes_bot) as conv:
-                reply = await message.get_reply_message()
-                mem = await conv.send_message(reply)
-                phtmem = await conv.get_response()
-                await conv.mark_read()
-                await message.delete()
-                await utils.answer(message, phtmem)
-        except ValueError:
+        reply = await message.get_reply_message()
+        if getattr(reply, "sticker", None):
+            try:
+                async with self._client.conversation(self.memes_bot) as conv:
+                    reply = await message.get_reply_message()
+                    mem = await conv.send_message(reply)
+                    phtmem = await conv.get_response()
+                    await conv.mark_read()
+                    await message.delete()
+                    await utils.answer(message, phtmem)
+            except ValueError:
+                await utils.answer(message, self.strings("filerr"))
+        else:
             await utils.answer(message, self.strings("filerr"))
