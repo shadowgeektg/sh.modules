@@ -5,3 +5,4 @@ SHChat
 StickerDownload
 VKInline
 trysamp
+TableInfo
