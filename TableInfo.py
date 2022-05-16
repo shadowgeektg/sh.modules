@@ -19,7 +19,7 @@ class TableMod(loader.Module):
     """Информация о знакомых"""
 
     strings = {
-        "name": "TableInfo",
+        "name": "TableMod",
         "no_args": "<b>😥 Arguments not found</b>",
         "args_incorrect": "<b>😰 Arguments are not correct\n✔ Example arguments: </b><code>.tableadd name|age|day|year|hobby|userid|geo</code>",
         "success": "<b>😊 Successfully added</b>",
@@ -37,15 +37,16 @@ class TableMod(loader.Module):
         self.client = client
         self.db = db
 
-    async def getchat(self):
+    async def getchat(self, reset=False):
         chat_id = self.get("chat_id")
-        if chat_id:
-            return chat_id
-        chat_id = [
-            chat for chat in await self.client.get_dialogs() if chat.name == "TableInfo"
-        ]
-        if chat_id:
-            return chat_id[0].id
+        if not reset:
+            if chat_id:
+                return chat_id
+            chat_id = [
+                chat for chat in await self.client.get_dialogs() if chat.name == "TableInfo"
+            ]
+            if chat_id:
+                return chat_id[0].id
         chat_id = (
             (
                 await self.client(
@@ -68,7 +69,6 @@ class TableMod(loader.Module):
         return chat_id
 
     async def tableaddcmd(self, message):
-        """Adding information about acquaintances"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("no_args"))
@@ -88,5 +88,9 @@ class TableMod(loader.Module):
             f"🖥 <b>Айди пользователя:</b> <a href='tg://user?id={userid}'>{userid}</a>\n"
             f"📍 <b>Местоположение:</b> <i>{geo}</i>\n"
         )
-        await self.client.send_message(chat, text)
+        try:
+            await self.client.send_message(chat, text)
+        except:
+            chat = await self.getchat(True)
+            await self.client.send_message(chat, text)
         return await utils.answer(message, self.strings("success"))
