@@ -88,5 +88,5 @@ class TableMod(loader.Module):
             f"🖥 <b>Айди пользователя:</b> <a href='tg://user?id={userid}'>{userid}</a>\n"
             f"📍 <b>Местоположение:</b> <i>{geo}</i>\n"
         )
-        return await self.client.send_message(chat, text)
-        await utils.answer(message, self.strings("success"))
+        await self.client.send_message(chat, text)
+        return await utils.answer(message, self.strings("success"))
