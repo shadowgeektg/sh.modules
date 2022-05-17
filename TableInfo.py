@@ -19,7 +19,7 @@ class TableMod(loader.Module):
     """Информация о знакомых"""
 
     strings = {
-        "name": "TableMod",
+        "name": "TableInfo",
         "no_args": "<b>😥 Arguments not found</b>",
         "args_incorrect": "<b>😰 Arguments are not correct\n✔ Example arguments: </b><code>.tableadd name|age|day|year|hobby|userid|geo</code>",
         "success": "<b>😊 Successfully added</b>",
