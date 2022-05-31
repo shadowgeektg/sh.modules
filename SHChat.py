@@ -7,6 +7,29 @@
     This module is free software
     You can edit this module
 """
+
+import io
+import logging
+import time
+from .. import loader, utils
+from telethon.tl.types import Message
+from telethon.errors import (
+    ChatAdminRequiredError,
+    UserAdminInvalidError,
+    FloodWaitError,
+    PhotoCropSizeSmallError,
+)
+from telethon.tl.types import ChatAdminRights, ChatBannedRights
+from telethon.tl.functions.channels import (
+    EditAdminRequest,
+    EditBannedRequest,
+    EditPhotoRequest,
+)
+from telethon.tl.functions.messages import EditChatAdminRequest
+import asyncio
+
+logger = logging.getLogger(__name__)
+
 """
 ======================================================================
 Admin Tools for Friendly-Telegram UserBot.
@@ -27,27 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ======================================================================
 """
 
-import io, logging, time
-from .. import loader, utils
-from telethon.tl.types import Message
-from telethon.errors import (
-    ChatAdminRequiredError,
-    UserAdminInvalidError,
-    FloodWaitError,
-    PhotoCropSizeSmallError,
-)
-from telethon.tl.types import ChatAdminRights, ChatBannedRights
-from telethon.tl.functions.channels import (
-    EditAdminRequest,
-    EditBannedRequest,
-    EditPhotoRequest,
-)
-from telethon.tl.functions.messages import EditChatAdminRequest
-import asyncio
-
-logger = logging.getLogger(__name__)
-
-# meta developer: @shadow_hikka, @CakesTwix, @Fl1yd
+# meta developer: @shadow_geektg, @CakesTwix, @Fl1yd
 
 # ================== КОНСТАНТЫ ========================
 
@@ -376,7 +379,7 @@ class SHChatMod(loader.Module):
                                 user.first_name, reason
                             ),
                         )
-                    if reason == False:
+                    if reason is False:
                         return await utils.answer(
                             kock, self.strings("kicked", kock).format(user.first_name)
                         )
@@ -430,7 +433,7 @@ class SHChatMod(loader.Module):
                             user.first_name, reason
                         ),
                     )
-                if reason == False:
+                if reason is False:
                     return await utils.answer(
                         bon, self.strings("banned", bon).format(user.first_name)
                     )
