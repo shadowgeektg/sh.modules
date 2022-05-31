@@ -14,7 +14,7 @@ import logging
 import asyncio
 
 # scope: hikka_only
-# meta developer: @shadow_hikka, @dan_endy, @hikariatama
+# meta developer: @shadow_geektg, @dan_endy, @hikariatama
 
 logger = logging.getLogger(__name__)
 
@@ -26,12 +26,14 @@ class InlineVizitkaMod(loader.Module):
         "mysocial": "<b>✨ My social networks</b>",
         "clickvk": "🦚 VK",
         "httpserr": "<b>❗ Warning ❗\nThe link must start with</b> <code>https://</code>",
+        "novkcall": "<b>😥 No tag</b>",
     }
 
     strings_ru = {
         "mysocial": "<b>✨ Мои соцсети</b>",
         "clickvk": "🦚 VK",
-        "httpserr": "<b>❗ Предупреждение ❗\nСсылка должна начинаться на</b> <code>https://</code>"
+        "httpserr": "<b>❗ Предупреждение ❗\nСсылка должна начинаться на</b> <code>https://</code>",
+        "novkcall": "<b>😥 Нету тэга</b>",
     }
 
     def __init__(self):
@@ -59,7 +61,7 @@ class InlineVizitkaMod(loader.Module):
             lambda: "You gitlab account LINK",
             "github",
             "🚫 Link not set",
-            lambda: "You github account LINK"
+            lambda: "You github account LINK",
         )
 
     @loader.unrestricted
@@ -73,7 +75,7 @@ class InlineVizitkaMod(loader.Module):
             text=self.strings("mysocial"),
             reply_markup=[
                 [
-                    {"text": "🥱 Discord", "url": self.config["discord"]},
+                    {"text": "🥱 Discord", "callback": self.inline__callAnswer},
                     {"text": "🦢 VK", "url": self.config["VK"]},
                 ],
                 [
@@ -90,3 +92,6 @@ class InlineVizitkaMod(loader.Module):
                 ],
             ],
         )
+
+    async def inline__callAnswer(self, call) -> None:
+        await call.answer(self.config["discord"], show_alert=True)
