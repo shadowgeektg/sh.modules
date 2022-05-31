@@ -11,6 +11,9 @@
 from .. import loader, utils
 import logging
 from telethon.tl.functions.channels import CreateChannelRequest
+from telethon.tl.types import Message
+
+logger = logging.getLogger(__name__)
 
 # scope: meta developer: @shadow_hikka, @lil_wonka
 
@@ -19,7 +22,7 @@ class TableMod(loader.Module):
     """Информация о знакомых"""
 
     strings = {
-        "name": "TableInfo",
+        "name": "TableMod",
         "no_args": "<b>😥 Arguments not found</b>",
         "args_incorrect": "<b>😰 Arguments are not correct\n✔ Example arguments: </b><code>.tableadd name|age|day|year|hobby|userid|geo</code>",
         "success": "<b>😊 Successfully added</b>",
@@ -43,7 +46,9 @@ class TableMod(loader.Module):
             if chat_id:
                 return chat_id
             chat_id = [
-                chat for chat in await self.client.get_dialogs() if chat.name == "TableInfo"
+                chat
+                for chat in await self.client.get_dialogs()
+                if chat.name == "TableInfo"
             ]
             if chat_id:
                 return chat_id[0].id
@@ -68,7 +73,7 @@ class TableMod(loader.Module):
         self.set("chat_id", chat_id)
         return chat_id
 
-    async def tableaddcmd(self, message):
+    async def tableaddcmd(self, message: Message) -> None:
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("no_args"))
@@ -90,7 +95,8 @@ class TableMod(loader.Module):
         )
         try:
             await self.client.send_message(chat, text)
-        except:
+        except Exception as e:
+            logger.debug(f"Error while sending message to chat: {e}")
             chat = await self.getchat(True)
             await self.client.send_message(chat, text)
         return await utils.answer(message, self.strings("success"))
