@@ -13,18 +13,29 @@ from telethon.tl.types import Message
 import re
 
 # scope: hikka_only
-# scope: meta developer: @shadow_hikka, @dan_endy
+# scope: meta developer: @shadow_geektg, @dan_endy
+
 
 @loader.tds
 class VKInlineMod(loader.Module):
-    strings = {"name": "MyVKInline", "myvk": "<b>👾 My VK</b>", "clickvk": "🦢 Click", "novk": "<b>😰 You didn't enter your VK</b>", "httpserr": "<b>❌ Invalid link in config\n✔ The link must start with</b> <code>https://</code>"}
+    strings = {
+        "name": "MyVKInline",
+        "myvk": "<b>👾 My VK</b>",
+        "clickvk": "🦢 Click",
+        "novk": "<b>😰 You didn't enter your VK</b>",
+        "httpserr": "<b>❌ Invalid link in config\n✔ The link must start with</b> <code>https://</code>",
+    }
 
-    strings_ru = {"myvk": "<b>👾 Мой VK</b>", "clickvk": "🦢 Нажми", "novk": "<b>😰 Вы не ввели свой вк</b>", "httpserr": "<b>❌ Недопустимая ссылка в конфиге\n✔ Ссылка должна начинаться на</b> <code>https://</code>"}
+    strings_ru = {
+        "myvk": "<b>👾 Мой VK</b>",
+        "clickvk": "🦢 Нажми",
+        "novk": "<b>😰 Вы не ввели свой вк</b>",
+        "httpserr": "<b>❌ Недопустимая ссылка в конфиге\n✔ Ссылка должна начинаться на</b> <code>https://</code>",
+    }
 
     def __init__(self):
-        self.config = loader.ModuleConfig("VK","", lambda: "You VK")
+        self.config = loader.ModuleConfig("VK", "", lambda: "You VK")
 
-    
     @loader.unrestricted
     async def myvkcmd(self, message: Message) -> None:
         """The command to display your VK"""
@@ -37,15 +48,9 @@ class VKInlineMod(loader.Module):
                 message=message,
                 disable_security=True,
                 reply_markup=[
-                    [
-                        {
-                            "text": self.strings("clickvk"),
-                            "url": self.config["VK"]
-                        }
-                    ]
+                    [{"text": self.strings("clickvk"), "url": self.config["VK"]}]
                 ],
             )
         else:
             await utils.answer(message, self.strings("httpserr"))
             return
- 
