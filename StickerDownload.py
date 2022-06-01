@@ -12,7 +12,6 @@ from .. import loader, utils
 from telethon.tl.types import Message
 import telethon
 from telethon import TelegramClient
-from telethon import database
 
 # scope: meta developer: @shadow_hikka
 
