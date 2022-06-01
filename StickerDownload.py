@@ -12,31 +12,36 @@ from .. import loader, utils
 from telethon.tl.types import Message
 import telethon
 from telethon import TelegramClient
+from telethon import database
 
 # scope: meta developer: @shadow_hikka
 
+
 @loader.tds
 class StickerDownloadMod(loader.Module):
-    strings = {"name": "StickerDownload", "filerr": "<b>😥 Specify a sticker replay to it</b>"}
+    strings = {
+        "name": "StickerDownload",
+        "filerr": "<b>😥 Specify a sticker replay to it</b>",
+    }
     strings_ru = {"filerr": "<b>😥 Укажи стикер реплаем на него</b>"}
-    
+
     memes_bot = "@Stickerdownloadbot"
 
     async def client_ready(self, client: TelegramClient, db):
-        self.memes_bot = "@Stickerdownloadbot"
+        self.download_bot = "@Stickerdownloadbot"
         self._db = db
         self._client = client
 
     async def on_dlmod(self, client: "TelegramClient", db: "database.Database"):
-        await utils.dnd(client, self.memes_bot, True)
-    
+        await utils.dnd(client, self.download_bot, True)
+
     async def stickdowncmd(self, message: Message) -> None:
         reply = await message.get_reply_message()
         if getattr(reply, "sticker", None):
             try:
-                async with self._client.conversation(self.memes_bot) as conv:
+                async with self._client.conversation(self.download_bot) as conv:
                     reply = await message.get_reply_message()
-                    mem = await conv.send_message(reply)
+                    await conv.send_message(reply)
                     phtmem = await conv.get_response()
                     await conv.mark_read()
                     await message.delete()
