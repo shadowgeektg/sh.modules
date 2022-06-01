@@ -12,8 +12,10 @@ from .. import loader, utils
 from telethon.tl.types import Message
 import telethon
 from telethon import TelegramClient
+from telethon import database
 
 # scope: meta developer: @shadow_hikka
+
 
 @loader.tds
 class RandomMemesMod(loader.Module):
@@ -23,13 +25,13 @@ class RandomMemesMod(loader.Module):
         self.memes_bot = "@ffmemesbot"
         self._db = db
         self._client = client
-    
+
     async def on_dlmod(self, client: "TelegramClient", db: "database.Database"):
         await utils.dnd(client, self.memes_bot, True)
-    
+
     async def randmemescmd(self, message: Message) -> None:
         async with self._client.conversation(self.memes_bot) as conv:
-            mem = await conv.send_message("/start")
+            await conv.send_message("/start")
             phtmem = await conv.get_response()
             await conv.mark_read()
             await message.delete()
