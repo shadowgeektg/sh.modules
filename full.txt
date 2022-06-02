@@ -6,3 +6,4 @@ StickerDownload
 VKInline
 trysamp
 TableInfo
+MyVizitka
