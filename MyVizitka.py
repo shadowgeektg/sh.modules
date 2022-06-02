@@ -97,6 +97,7 @@ class MyVizitkaMod(loader.Module):
     @loader.unrestricted
     async def myvizitcmd(self, message: Message) -> None:
         """Command for displaying a business card"""
+        m = {x: self._get_mark(x) for x in range(7)}
         me = f'<b><a href="tg://user?id={self.me.id}">{get_display_name(self.me)}</a></b>'
         prefix = self.get_prefix()
         platform = utils.get_named_platform()
