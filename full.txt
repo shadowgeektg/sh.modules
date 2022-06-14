@@ -7,3 +7,4 @@ VKInline
 trysamp
 TableInfo
 MyVizitka
+NewsLetter
