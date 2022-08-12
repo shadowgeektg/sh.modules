@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 
 
 @loader.tds
-class MyVizitkaMod(loader.Module):
-    strings = {"name": "MyVizitka"}
+class MyCardMod(loader.Module):
+    strings = {"name": "MyCard"}
 
     def __init__(self):
         self.config = loader.ModuleConfig(
