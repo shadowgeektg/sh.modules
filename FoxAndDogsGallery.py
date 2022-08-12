@@ -1,19 +1,18 @@
-"""
+# █▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
+# ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
 
-█▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
-▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
+# Copyleft 2022 t.me/shadow_modules
+# This module is free software
+# You can edit this module
 
-    Copyleft 2022 t.me/shadow_modules
-    This module is free software
-    You can edit this module
-"""
-
-# meta developer: @shadow_hikka
+# meta developer: @shadow_modules
 # scope: hikka_only
+
+from .. import loader, utils
 
 import requests
 import random
-from .. import loader, utils
+
 from telethon.tl.types import Message
 
 
@@ -51,23 +50,21 @@ class FoxGalerryMod(loader.Module):
 
     strings = {"name": "FoxGallery"}
 
-    async def foxescmd(self, message: Message) -> None:
+    strings_ru = {
+        "_cls_doc": "🦊 Лисички, Песики 🐶",
+        "_cmd_doc_foxes": "🦊 Лисички",
+        "_cmd_doc_dogs": "🐶 Песики",
+        "_cmd_doc_random": "🦊 Лисички и Песики 🐶",
+    }
+
+    async def foxescmd(self, message: Message):
         """🦊 Sending photos with foxes"""
-        await self.inline.gallery(
-            message,
-            photofox,
-        )
+        await self.inline.gallery(message, photofox)
 
-    async def dogscmd(self, message: Message) -> None:
+    async def dogscmd(self, message: Message):
         """🐶 Sending photos with dogs"""
-        await self.inline.gallery(
-            message,
-            photodog,
-        )
+        await self.inline.gallery(message, photodog)
 
-    async def randomcdfcmd(self, message: Message) -> None:
+    async def randomcdfcmd(self, message: Message):
         """Photos of dogs 🐶 and foxes 🦊"""
-        await self.inline.gallery(
-            message,
-            randomapi,
-        )
+        await self.inline.gallery(message, randomapi)

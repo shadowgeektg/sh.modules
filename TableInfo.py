@@ -1,21 +1,22 @@
-"""
+# █▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
+# ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
 
-█▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
-▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
+# Copyleft 2022 t.me/shadow_modules
+# This module is free software
+# You can edit this module
 
-    Copyleft 2022 t.me/shadow_modules
-    This module is free software
-    You can edit this module
-"""
+# meta developer: @shadow_hikka, @lil_wonka
+# scope: hikka_only
+# scope: hikka_min 1.3.0
 
 from .. import loader, utils
+
 import logging
+
 from telethon.tl.functions.channels import CreateChannelRequest
 from telethon.tl.types import Message
 
 logger = logging.getLogger(__name__)
-
-# scope: meta developer: @shadow_hikka, @lil_wonka
 
 
 class TableMod(loader.Module):
@@ -36,11 +37,7 @@ class TableMod(loader.Module):
         "dont_touch": "💾 Не трогайте этот чат\n😊Он был создан для работы модуля TableInfo",
     }
 
-    async def client_ready(self, client, db):
-        self.client = client
-        self.db = db
-
-    async def getchat(self, reset=False):
+    async def getchat(self, reset: bool = False) -> int:
         chat_id = self.get("chat_id")
         if not reset:
             if chat_id:
@@ -73,15 +70,18 @@ class TableMod(loader.Module):
         self.set("chat_id", chat_id)
         return chat_id
 
-    async def tableaddcmd(self, message: Message) -> None:
+    async def tableaddcmd(self, message: Message):
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("no_args"))
             return
+
         args = args.split("|")
+
         if len(args) != 7:
             await utils.answer(message, self.strings("args_incorrect"))
             return
+
         name, age, day, year, hobby, userid, geo = args
         chat = await self.getchat()
         text = (
@@ -93,10 +93,12 @@ class TableMod(loader.Module):
             f"🖥 <b>Айди пользователя:</b> <a href='tg://user?id={userid}'>{userid}</a>\n"
             f"📍 <b>Местоположение:</b> <i>{geo}</i>\n"
         )
+
         try:
             await self.client.send_message(chat, text)
         except Exception as e:
             logger.debug(f"Error while sending message to chat: {e}")
             chat = await self.getchat(True)
             await self.client.send_message(chat, text)
-        return await utils.answer(message, self.strings("success"))
+
+        await utils.answer(message, self.strings("success"))

@@ -1,34 +1,28 @@
-"""
+# █▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
+# ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
 
-█▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
-▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
-
-    Copyleft 2022 t.me/shadow_modules
-    This module is free software
-    You can edit this module
-"""
+# Copyleft 2022 t.me/shadow_modules
+# This module is free software
+# You can edit this module
 
 from .. import loader, utils
-from telethon.tl.types import Message
-import telethon
-from telethon import TelegramClient
 
-# scope: meta developer: @shadow_hikka
+from telethon.tl.types import Message
+
+# meta developer: @shadow_hikka
+# scope: hikka_only
+# scope: hikka_min 1.3.0
 
 
 @loader.tds
 class RandomMemesMod(loader.Module):
     strings = {"name": "RandomMemes"}
+    memes_bot = "@ffmemesbot"
 
-    async def client_ready(self, client: TelegramClient, db):
-        self.memes_bot = "@ffmemesbot"
-        self._db = db
-        self._client = client
+    async def on_dlmod(self):
+        await utils.dnd(self._client, self.memes_bot, True)
 
-    async def on_dlmod(self, client: "TelegramClient", db: "database.Database"):
-        await utils.dnd(client, self.memes_bot, True)
-
-    async def randmemescmd(self, message: Message) -> None:
+    async def randmemescmd(self, message: Message):
         async with self._client.conversation(self.memes_bot) as conv:
             await conv.send_message("/start")
             phtmem = await conv.get_response()
