@@ -1,19 +1,21 @@
-"""
-    █▀ █ █ ▄▀█ █▀▄ █▀█ █ █ █
-    ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
+# █▀ █ █ ▄▀█ █▀▄ █▀█ █ █ █
+# ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
 
-    Copyleft 2022 t.me/shadow_modules
-    This module is free software
-    You can edit this module
-"""
+# Copyleft 2022 t.me/shadow_modules
+# This module is free software
+# You can edit this module
+
+# meta developer: @shadow_hikka
+# scope: hikka_only
+# scope: hikka_min 1.3.0
 
 from .. import loader, utils
-from telethon.tl.types import Message
-import logging
-from telethon.utils import get_display_name
+from ..inline.types import InlineQuery
 
-# scope: hikka_only
-# meta developer: @shadow_hikka
+import logging
+
+from telethon.tl.types import Message
+from telethon.utils import get_display_name
 
 logger = logging.getLogger(__name__)
 
@@ -78,8 +80,9 @@ class MyVizitkaMod(loader.Module):
             ),
         )
 
-    def _get_mark(self, btn_count):
+    def _get_mark(self, btn_count: int) -> dict:
         btn_count = str(btn_count)
+
         return (
             {
                 "text": self.config[f"button_{btn_count}"][0],
@@ -89,16 +92,17 @@ class MyVizitkaMod(loader.Module):
             else None
         )
 
-    async def client_ready(self, client, db):
-        self.db = db
-        self.client = client
-        self.me = await client.get_me()
+    async def client_ready(self):
+        self.me = await self._client.get_me()
 
     @loader.unrestricted
-    async def myvizitcmd(self, message: Message) -> None:
+    async def myvizitcmd(self, message: Message):
         """Command for displaying a business card"""
         m = {x: self._get_mark(x) for x in range(7)}
-        me = f'<b><a href="tg://user?id={self.me.id}">{get_display_name(self.me)}</a></b>'
+        me = (
+            "<b><a"
+            f' href="tg://user?id={self.me.id}">{get_display_name(self.me)}</a></b>'
+        )
         prefix = self.get_prefix()
         platform = utils.get_named_platform()
         await self.inline.form(
@@ -122,10 +126,14 @@ class MyVizitkaMod(loader.Module):
             **{self.config["type_file"]: self.config["file_url"]},
         )
 
-    async def myvizit_inline_handler(self, query: "InlineQuery") -> str:
-        """Inline myvizit"""
+    @loader.inline_handler(ru_doc="Моя визитка")
+    async def myvizit(self, _: InlineQuery) -> dict:
+        """My inline card"""
         m = {x: self._get_mark(x) for x in range(7)}
-        me = f'<b><a href="tg://user?id={self.me.id}">{get_display_name(self.me)}</a></b>'
+        me = (
+            "<b><a"
+            f' href="tg://user?id={self.me.id}">{get_display_name(self.me)}</a></b>'
+        )
         prefix = self.get_prefix()
         platform = utils.get_named_platform()
 
@@ -133,7 +141,9 @@ class MyVizitkaMod(loader.Module):
             "title": "MyVizitka",
             "description": "My business card",
             "message": self.config["custom_message"].format(
-                me=me, prefix=prefix, platform=platform
+                me=me,
+                prefix=prefix,
+                platform=platform,
             ),
             "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Info_Simple_bw.svg/1200px-Info_Simple_bw.svg.png",
             "reply_markup": [
