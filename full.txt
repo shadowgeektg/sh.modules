@@ -8,3 +8,4 @@ trysamp
 TableInfo
 MyVizitka
 NewsLetter
+100Percent.py
