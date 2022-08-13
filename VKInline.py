@@ -10,6 +10,7 @@ from telethon.tl.types import Message
 
 # meta developer: @shadow_geektg, @dan_endy
 # scope: hikka_only
+# meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 
 @loader.tds
@@ -47,5 +48,8 @@ class VKInlineMod(loader.Module):
             await self.inline.form(
                 text=self.strings("myvk"),
                 message=message,
-                reply_markup={"text": self.strings("clickvk"), "url": self.config["VK"]},
+                reply_markup={
+                    "text": self.strings("clickvk"),
+                    "url": self.config["VK"],
+                },
             )

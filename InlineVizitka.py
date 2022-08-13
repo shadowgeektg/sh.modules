@@ -13,6 +13,7 @@ from telethon.tl.types import Message
 
 # scope: hikka_only
 # meta developer: @shadow_hikka, @dan_endy, @hikariatama
+# meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 logger = logging.getLogger(__name__)
 

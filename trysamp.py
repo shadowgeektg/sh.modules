@@ -6,6 +6,7 @@
 # You can edit this module
 
 # meta developer: @shadow_hikka
+# meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 from .. import loader, utils
 from telethon.tl.types import Message
@@ -19,4 +20,6 @@ class TrySampMod(loader.Module):
     async def trycmd(self, message: Message):
         tryrandom = random.choice(["Удачно", "Не удачно", "Не удачно", "Удачно"])
         args = utils.get_args_raw(message)
-        await utils.answer(message, f"<b>{tryrandom} | {args}</b>" if args else f"<b>{tryrandom}</b>")
+        await utils.answer(
+            message, f"<b>{tryrandom} | {args}</b>" if args else f"<b>{tryrandom}</b>"
+        )
