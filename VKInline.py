@@ -6,9 +6,9 @@
 # You can edit this module
 
 from .. import loader, utils
-from telethon.tl.types import Message
+from telethon.tl.types import Message  # type: ignore
 
-# meta developer: @shadow_geektg, @dan_endy
+# meta developer: @shadow_modules, @dan_endy
 # scope: hikka_only
 # meta banner: https://i.imgur.com/OM64rlU.jpeg
 

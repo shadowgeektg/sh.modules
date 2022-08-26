@@ -9,10 +9,10 @@ from .. import loader, utils
 
 import logging
 
-from telethon.tl.types import Message
+from telethon.tl.types import Message  # type: ignore
 
 # scope: hikka_only
-# meta developer: @shadow_hikka, @dan_endy, @hikariatama
+# meta developer: @shadow_modules, @dan_endy, @hikarimods
 # meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 logger = logging.getLogger(__name__)
