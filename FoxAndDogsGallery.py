@@ -11,10 +11,10 @@
 
 from .. import loader, utils
 
-import requests  # type: ignore
+import requests  
 import random
 
-from telethon.tl.types import Message  # type: ignore
+from telethon.tl.types import Message  
 
 
 async def photofox() -> str:

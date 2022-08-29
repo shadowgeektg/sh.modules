@@ -7,7 +7,7 @@
 
 from .. import loader, utils
 
-from telethon.tl.types import Message  # type: ignore
+from telethon.tl.types import Message  
 
 # meta developer: @shadow_modules
 # scope: hikka_only

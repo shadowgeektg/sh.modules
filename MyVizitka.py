@@ -11,12 +11,12 @@
 # meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 from .. import loader, utils
-from ..inline.types import InlineQuery  # type: ignore
+from ..inline.types import InlineQuery  
 
 import logging
 
-from telethon.tl.types import Message  # type: ignore
-from telethon.utils import get_display_name  # type: ignore
+from telethon.tl.types import Message  
+from telethon.utils import get_display_name  
 
 logger = logging.getLogger(__name__)
 

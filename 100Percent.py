@@ -11,7 +11,7 @@
 # meta banner: https://i.imgur.com/OM64rlU.jpeg
 
 from .. import loader, utils
-from telethon.tl.types import Message 
+from telethon.tl.types import Message
 
 
 @loader.tds
