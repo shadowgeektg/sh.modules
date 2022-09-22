@@ -6,7 +6,7 @@
 # You can edit this module
 
 from .. import loader, utils
-from telethon.tl.types import Message  
+from telethon.tl.types import Message
 
 # meta developer: @shadow_modules, @dan_endy
 # scope: hikka_only

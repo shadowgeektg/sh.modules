@@ -14,8 +14,8 @@ from .. import loader, utils
 
 import logging
 
-from telethon.tl.functions.channels import CreateChannelRequest  
-from telethon.tl.types import Message  
+from telethon.tl.functions.channels import CreateChannelRequest
+from telethon.tl.types import Message
 
 logger = logging.getLogger(__name__)
 

@@ -6,8 +6,8 @@
 # You can edit this module
 
 from .. import loader, utils
-from telethon.tl.types import Message  
-from ..inline.types import InlineCall  
+from telethon.tl.types import Message
+from ..inline.types import InlineCall
 
 # meta developer: @shadow_modules, @hikarimods
 # scope: hikka_only
