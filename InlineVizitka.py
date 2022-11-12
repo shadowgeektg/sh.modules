@@ -9,7 +9,7 @@ from .. import loader, utils
 
 import logging
 
-from telethon.tl.types import Message
+from telethon.tl.types import Message  # type: ignore
 
 # scope: hikka_only
 # meta developer: @shadow_modules, @dan_endy, @hikarimods
