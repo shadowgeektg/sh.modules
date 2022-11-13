@@ -20,10 +20,13 @@ class VulgarStories(loader.Module):
         "warning": "⛔️ <b>I do not recommend using this module.</b>\n🍆 <b>In many chat rooms, all sorts of vulgar stories are prohibited.</b>",
     }
     strings_ru = {
-        "warning": ">⛔️<b>Не советую использовать этот модуль</b>\n🍆 <b>Во многих чатах запрещены всякие пошлые истории</b>",
+        "warning": "⛔️ <b>Не советую использовать этот модуль</b>\n🍆 <b>Во многих чатах запрещены всякие пошлые истории</b>",
     }
 
     async def client_ready(self):
+        self.messages = random.choice(
+            await self.client.get_messages("pirsikowe", limit=100)
+        )
         if not self.get("warning_stories", False):
             await self.inline.bot.send_message(
                 self._tg_id,
@@ -32,5 +35,4 @@ class VulgarStories(loader.Module):
         self.set("warning_stories", True)
 
     async def vstorcmd(self, message: Message):
-        persik = random.choice(await self.client.get_messages("pirsikowe", limit=99999))
-        await utils.answer(message, persik)
+        await utils.answer(message, self.persik)
