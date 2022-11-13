@@ -24,9 +24,7 @@ class VulgarStories(loader.Module):
     }
 
     async def client_ready(self):
-        self.messages = random.choice(
-            await self.client.get_messages("pirsikowe", limit=100)
-        )
+        self.messages = await self.client.get_messages("pirsikowe", limit=100)
         if not self.get("warning_stories", False):
             await self.inline.bot.send_message(
                 self._tg_id,
@@ -35,5 +33,6 @@ class VulgarStories(loader.Module):
         self.set("warning_stories", True)
 
     async def vstorcmd(self, message: Message):
-        """Vulgar Stories for gays."""
-        await utils.answer(message, self.messages)
+        """Vulgar Stories for geys."""
+        persik = random.choice(self.messages)
+        await utils.answer(message, persik)
