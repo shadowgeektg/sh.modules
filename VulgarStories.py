@@ -36,4 +36,4 @@ class VulgarStories(loader.Module):
 
     async def vstorcmd(self, message: Message):
         """Vulgar Stories for gays."""
-        await utils.answer(message, self.persik)
+        await utils.answer(message, self.messages)
