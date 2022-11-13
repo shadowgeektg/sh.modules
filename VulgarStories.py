@@ -35,4 +35,5 @@ class VulgarStories(loader.Module):
         self.set("warning_stories", True)
 
     async def vstorcmd(self, message: Message):
+        """Vulgar Stories for gays."""
         await utils.answer(message, self.persik)
