@@ -39,6 +39,6 @@ class PercentMod(loader.Module):
         await self.animate(
             message,
             [f"{args[0]} {x}%" for x in range(100)] + [args[1]],
-            interval=interval,
+            interval=int(interval),
             inline=True,
         )
