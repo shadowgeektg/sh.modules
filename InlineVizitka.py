@@ -4,12 +4,9 @@
 # Copyleft 2022 t.me/shadow_modules
 # This module is free software
 # You can edit this module
-
-from .. import loader, utils
-
 import logging
-
-from telethon.tl.types import Message  # type: ignore
+from telethon.tl.types import Messagep
+from .. import loader, utils  # type: ignore
 
 # scope: hikka_only
 # meta developer: @shadow_modules, @dan_endy, @hikarimods
