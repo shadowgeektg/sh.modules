@@ -21,11 +21,6 @@ import openai
 from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 
-# Set up the OpenAI API client
-openai.api_key = ""
-
-# Set up the model and prompt
-
 
 @loader.tds
 class ChatGPTMod(loader.Module):
