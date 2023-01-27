@@ -23,19 +23,19 @@ from telethon.tl.types import Message  # type: ignore
 
 
 @loader.tds
-class ChatGPTMod(loader.Module):
+class GPT2Mod(loader.Module):
     strings = {
         "name": "ChatGPT",
-        "wait": "<emoji document_id=5471981853445463256>🤖</emoji><b> ChatGPT generating response, please wait</b>",
-        "quest": "\n\n\n<emoji document_id=5819167501912640906>❔</emoji><b> Your question to ChatGPT was:</b> {args}",
-        "args_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> You didn't ask a question ChatGPT</b>",
-        "conf_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> You didn't provide an api key for ChatGPT</b>",
+        "wait": "<emoji document_id=5471981853445463256>🤖</emoji><b> GPT-2 is generating response, please wait</b>",
+        "quest": "\n\n\n<emoji document_id=5819167501912640906>❔</emoji><b> Your question to GPT-2 was:</b> {args}",
+        "args_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> You didn't ask a question GPT-2</b>",
+        "conf_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> You didn't provide an api key for GPT-2</b>",
     }
     strings_ru = {
-        "wait": "<emoji document_id=5471981853445463256>🤖</emoji><b> ChatGPT генерирует ответ, подождите</b>",
-        "quest": "\n\n\n<emoji document_id=5819167501912640906>❔</emoji><b> Ваш вопрос к ChatGPT был:</b> {args}",
-        "args_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> Вы не задали вопрос ChatGPT</b>",
-        "conf_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> Вы не указали api key для ChatGPT</b>",
+        "wait": "<emoji document_id=5471981853445463256>🤖</emoji><b> GPT-2 генерирует ответ, подождите</b>",
+        "quest": "\n\n\n<emoji document_id=5819167501912640906>❔</emoji><b> Ваш вопрос к GPT-2 был:</b> {args}",
+        "args_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> Вы не задали вопрос GPT-2</b>",
+        "conf_err": "<emoji document_id=5215534321183499254>⛔️</emoji><b> Вы не указали api key для GPT-2</b>",
     }
 
     def __init__(self):
@@ -43,13 +43,13 @@ class ChatGPTMod(loader.Module):
             loader.ConfigValue(
                 "api_key",
                 None,
-                lambda: "Api key for ChatGPT",
+                lambda: "Api key for GPT-2",
                 validator=loader.validators.Hidden(),
             ),
         )
 
     async def gptcmd(self, message: Message):
-        """<question> - question for ChatGPT"""
+        """<question> - question for GPT-2"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("args_err"))
