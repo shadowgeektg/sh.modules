@@ -14,7 +14,7 @@
 
 # meta developer: @shadow_modules
 # scope: hikka_only
-# meta banner: https://i.imgur.com/OM64rlU.jpeg
+# meta banner: https://i.imgur.com/nZalKg2.jpeg
 
 from .. import loader, utils
 

@@ -19,7 +19,7 @@ from ..inline.types import InlineCall  # type: ignore
 # meta developer: @shadow_modules, @hikarimods
 # scope: hikka_only
 # scope: hikka_min 1.3.0
-# meta banner: https://i.imgur.com/OM64rlU.jpeg
+# meta banner: https://i.imgur.com/Hy9ABNY.jpeg
 
 
 @loader.tds

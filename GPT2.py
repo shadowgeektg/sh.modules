@@ -14,7 +14,7 @@
 
 
 # meta developer: @shadow_modules
-# meta banner: https://i.imgur.com/OM64rlU.jpeg
+# meta banner: https://i.imgur.com/fdEskim.jpeg
 
 
 import openai
