@@ -24,13 +24,18 @@ class GYForYouMod(loader.Module):
     strings = {
         "name": "GYForYou",
         "google": "<emoji document_id=5300882244842300470>👩‍💻</emoji><b> I googled for you</b>\n",
+        "no_args": "❌ No args",
     }
     strings_ru = {
-        "google": "<emoji document_id=5300882244842300470>👩‍💻</emoji><b> Я погуглил за тебя</b>\n"
+        "google": "<emoji document_id=5300882244842300470>👩‍💻</emoji><b> Я погуглил за тебя</b>\n",
+        "no_args": "❌ Нет аргументов",
     }
 
     async def googlecmd(self, message: Message):
         args = utils.get_args_raw(message)
-        g = args.replace(" ", "%20")
-        google = f"http://g.zeos.in/?q={g}"
+        if not args:
+            await utils.answer(message, self.strings("no_args"))
+            return
+        g = args.replace(" ", "+")
+        google = f"https://google.gik-team.com/?q={g}"
         await utils.answer(message, self.strings("google") + google)
