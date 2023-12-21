@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # meta developer: @shadow_modules, @toxicuse
-# meta banner: https://i.imgur.com/aGGx93G.jpeg
+# meta banner: https://i.imgur.com/8UYznku.jpeg
 
 from .. import loader, utils
 from telethon.tl.types import Message
