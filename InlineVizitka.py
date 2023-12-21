@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import logging
-from telethon.tl.types import Messagep
+from telethon.tl.types import Message
 from .. import loader, utils  # type: ignore
 
 # scope: hikka_only
