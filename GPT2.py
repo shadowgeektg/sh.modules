@@ -24,6 +24,8 @@ from telethon.tl.types import Message  # type: ignore
 
 @loader.tds
 class GPT2Mod(loader.Module):
+    """ChatGPT в модуле"""
+
     strings = {
         "name": "ChatGPT",
         "wait": "<emoji document_id=5471981853445463256>🤖</emoji><b> GPT-2 is generating response, please wait</b>",
@@ -49,7 +51,7 @@ class GPT2Mod(loader.Module):
         )
 
     async def gptcmd(self, message: Message):
-        """<question> - question for GPT-2"""
+        """.gpt <args>"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("args_err"))

@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 class TableMod(loader.Module):
-    """Информация о знакомых"""
+    """Information in parents"""
 
     strings = {
         "name": "TableMod",

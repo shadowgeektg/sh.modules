@@ -22,6 +22,8 @@ import random
 
 @loader.tds
 class VulgarStories(loader.Module):
+    """VulgarStories"""
+
     strings = {
         "name": "VulgarStories",
         "warning": "⛔️ <b>I do not recommend using this module.</b>\n🍆 <b>In many chat rooms, all sorts of vulgar stories are prohibited.</b>",

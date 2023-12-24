@@ -21,6 +21,8 @@ from telethon.tl.types import Message  # type: ignore
 
 @loader.tds
 class GYForYouMod(loader.Module):
+    """Погуглю за тебя"""
+
     strings = {
         "name": "GYForYou",
         "google": "<emoji document_id=5300882244842300470>👩‍💻</emoji><b> I googled for you</b>\n",
@@ -32,6 +34,7 @@ class GYForYouMod(loader.Module):
     }
 
     async def googlecmd(self, message: Message):
+        """.google <args>"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("no_args"))

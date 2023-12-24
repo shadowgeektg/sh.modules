@@ -25,6 +25,8 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class InlineVizitkaMod(loader.Module):
+    """You information in inline vizitka"""
+
     strings = {
         "name": "InlineVizitka",
         "mysocial": "<b>✨ My social networks</b>",

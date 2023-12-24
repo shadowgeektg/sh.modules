@@ -24,6 +24,8 @@ from telethon.tl.types import Message  # type: ignore
 
 @loader.tds
 class RandomMemesMod(loader.Module):
+    """RandomMemes"""
+
     strings = {"name": "RandomMemes"}
     memes_bot = "@ffmemesbot"
 
@@ -31,6 +33,7 @@ class RandomMemesMod(loader.Module):
         await utils.dnd(self._client, self.memes_bot, True)
 
     async def randmemescmd(self, message: Message):
+        """See random memes"""
         async with self._client.conversation(self.memes_bot) as conv:
             await conv.send_message("/start")
             phtmem = await conv.get_response()

@@ -23,6 +23,8 @@ from telethon.tl.types import Message  # type: ignore
 
 @loader.tds
 class StickerDownloadMod(loader.Module):
+    """Sticker Downloader"""
+
     strings = {
         "name": "StickerDownload",
         "filerr": "<b>😥 Specify a sticker replay to it</b>",
@@ -36,6 +38,7 @@ class StickerDownloadMod(loader.Module):
         await utils.dnd(self._client, self.download_bot, True)
 
     async def stickdowncmd(self, message: Message):
+        """stickdown <reply for sticker>"""
         reply = await message.get_reply_message()
         if not getattr(reply, "sticker", None):
             await utils.answer(message, self.strings("filerr"))

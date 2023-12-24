@@ -22,6 +22,8 @@ from telethon.tl.types import Message  # type: ignore
 
 @loader.tds
 class VKInlineMod(loader.Module):
+    """Your vk in inline"""
+
     strings = {
         "name": "MyVKInline",
         "myvk": "<b>👾 My VK</b>",

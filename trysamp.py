@@ -22,9 +22,12 @@ import random
 
 @loader.tds
 class TrySampMod(loader.Module):
+    """Try such as in samp"""
+
     strings = {"name": "TrySamp"}
 
     async def trycmd(self, message: Message):
+        """try you luck"""
         tryrandom = random.choice(["Удачно", "Не удачно", "Не удачно", "Удачно"])
         args = utils.get_args_raw(message)
         await utils.answer(

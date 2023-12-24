@@ -24,6 +24,8 @@ from ..inline.types import InlineCall  # type: ignore
 
 @loader.tds
 class NewsLetterMod(loader.Module):
+    """newsletter for chats"""
+
     strings = {
         "name": "NewsLetter",
         "succnews": (
@@ -72,6 +74,7 @@ class NewsLetterMod(loader.Module):
         )
 
     async def sendnewscmd(self, message: Message):
+        """sendnews <message>"""
         if self.get("warn") == "no":
             await self.inline.form(
                 message=message,
