@@ -9,4 +9,6 @@ TableInfo
 MyVizitka
 NewsLetter
 100Percent
+GPT2
 HentaiManga
+ConvertTime
