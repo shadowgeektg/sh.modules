@@ -122,15 +122,22 @@ class NewsLetterMod(loader.Module):
             )
             return
         args = utils.get_args_raw(message)
+        reply = await message.get_reply_message()
         chats = self.config["chats"]
         if not chats:
             await utils.answer(message, self.strings("nochat"))
             return
         try:
-            for chat in chats:
-                await self.client.send_message(chat, args)
+            if reply:
+                for chat in chats:
+                    await self.client.send_message(chat, reply)
+            if not reply:
+                for chat in chats:
+                    await self.client.send_message(chat, args)
         except ValueError:
             await utils.answer(message, self.strings("noargs"))
+            return
+
         await utils.answer(
             message,
             self.strings("succnews").format(
