@@ -29,10 +29,10 @@ class NewsLetterMod(loader.Module):
     strings = {
         "name": "NewsLetter",
         "succnews": (
-            "<b>✅ Newsletter successfully sent</b>\n<b>👁‍🗨 Chats that were"
+            "<b>✅ Newsletter successfully sent</b>\n<b>👁‍🗨 Id сhats that were"
             " sent:</b>\n{}"
         ),
-        "nochat": "<b>No chat to send</b>",
+        "nochat": "<emoji document_id=5350311258220404874>❗️</emoji> <b>You did not specify chats for mailing</b>",
         "warnform": (
             "<b>⚠️ Attention!</b>\n<b>😰 When sending a newsletter to a lot of chats,"
             " there may be a flood</b>\n<b>✅ If you agree that you can get a flood,"
@@ -44,16 +44,16 @@ class NewsLetterMod(loader.Module):
     }
     strings_ru = {
         "succnews": (
-            "<b>✅ Рассылка успешно отправлена</b>\n<b>👁‍🗨 Чаты в которые была"
+            "<b>✅ Рассылка успешно отправлена</b>\n<b>👁‍🗨 Айди чатов в которые была"
             " отправлена рассылка:</b>\n{}"
         ),
-        "nochat": "<b>Нет чата для рассылки</b>",
         "warnform": (
             "<b>⚠️ Внимание!</b>\n<b>😰 При отправке рассылки во многое количество чатов"
             " может быть флудвейт</b>\n<b>✅ Если вы согласны с тем что можете получить"
             " флудвейт - нажмите на кнопку ниже</b>"
         ),
         "noargs": "<b>😥 Нет сообщения что-бы рассылать</b>",
+        "nochat": "<emoji document_id=5350311258220404874>❗️</emoji> <b>Вы не указали чаты для рассылки</b>",
         "yes": "✅ Да",
         "no": "❌ Нет",
     }
@@ -65,17 +65,14 @@ class NewsLetterMod(loader.Module):
                 [],
                 lambda: "Chat for newsletter",
                 validator=loader.validators.Series(
-                    validator=loader.validators.Union(
-                        loader.validators.TelegramID(),
-                        loader.validators.RegExp("^@[a-zA-Z0-9_]{1,32}$"),
-                    ),
+                    validator=loader.validators.TelegramID()
                 ),
             ),
         )
 
     async def sendnewscmd(self, message: Message):
-        """sendnews <message>"""
-        if self.get("warn") == "no":
+        """<message>"""
+        if not self.db.get(__name__, "warn", False):
             await self.inline.form(
                 message=message,
                 text=self.strings("warnform"),
@@ -100,6 +97,9 @@ class NewsLetterMod(loader.Module):
 
         args = utils.get_args_raw(message)
         chats = self.config["chats"]
+        if not chats:
+            await utils.answer(message, self.strings("nochat"))
+            return
         try:
             for chat in chats:
                 await self.client.send_message(chat, args)
@@ -112,5 +112,5 @@ class NewsLetterMod(loader.Module):
             await utils.answer(message, self.strings("noargs"))
 
     async def inline__callAnswer(self, call: InlineCall, value: str):
-        self.set("warn", value)
+        self.db.set(__name__, "warn", True)
         await call.delete()

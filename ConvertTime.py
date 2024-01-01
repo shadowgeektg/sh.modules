@@ -19,7 +19,7 @@ from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 
 
-async def convert(message, args):
+async def convert(self, message, args):
     days, remainder = divmod(args, 86400)
     hours, remainder = divmod(remainder, 3600)
     minutes = divmod(remainder, 60)
@@ -39,6 +39,8 @@ async def convert(message, args):
     ]
 
     time_string = "\n".join(part for part in time_parts if part is not None)
+    if args == 0:
+        await utils.answer(message, self.strings("no_args"))
 
     await utils.answer(message, time_string)
 
