@@ -98,7 +98,7 @@ class NewsLetterMod(loader.Module):
         )
 
     async def sendnewscmd(self, message: Message):
-        """<message>"""
+        """<message> or reply"""
         if not self.db.get(__name__, "warn", False):
             await self.inline.form(
                 message=message,
