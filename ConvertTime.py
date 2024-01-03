@@ -39,7 +39,7 @@ async def convert(self, message, args):
     ]
 
     time_string = "\n".join(part for part in time_parts if part is not None)
-    if args == 0:
+    if not args:
         await utils.answer(message, self.strings("no_args"))
 
     await utils.answer(message, time_string)
