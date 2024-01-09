@@ -40,5 +40,5 @@ class GYForYouMod(loader.Module):
             await utils.answer(message, self.strings("no_args"))
             return
         g = args.replace(" ", "+")
-        google = f"https://google.gik-team.com/?q={g}"
+        google = f"https://track24.ru/google/?q={g}"
         await utils.answer(message, self.strings("google") + google)
