@@ -19,7 +19,8 @@ from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 from telethon.tl.functions.channels import CreateChannelRequest  # type: ignore
 from telethon.tl.functions.channels import UpdateUsernameRequest  # type: ignore
-import logging
+from datetime import datetime
+import pytz  # type: ignore
 
 
 @loader.tds
@@ -30,10 +31,12 @@ class CheckerUsernamesMod(loader.Module):
         "name": "CheckerUsernames",
         "off": "<emoji document_id=5350311258220404874>❗️</emoji> <b>Checker disabled</b>",
         "on": "<emoji document_id=5776375003280838798>✅</emoji> <b>Checker enabled</b>",
+        "catching": "<b>👍 I caught the username\n🧐 Username: @{user}\n<b>⏰ Catch time: {time}</b>",
     }
     strings_ru = {
         "off": "<emoji document_id=5350311258220404874>❗️</emoji> <b>Проверка юзернеймов выключена</b>",
         "on": "<emoji document_id=5776375003280838798>✅</emoji> <b>Проверка юзернеймов включена</b>",
+        "catching": "<b>👍 Я словил юзернейм\n🧐 Юзернейм: @{user}\n<b>⏰ Время ловли: {time}</b>",
     }
 
     def __init__(self):
@@ -58,18 +61,28 @@ class CheckerUsernamesMod(loader.Module):
                 lambda: "Delay for check username",
                 validator=loader.validators.Integer(minimum=0),
             ),
+            loader.ConfigValue(
+                "time",
+                "Europe/Kiev",
+                lambda: "Timezone",
+                validator=loader.validators.String(),
+            ),
         )
 
     @loader.loop(30, autostart=True)
     async def checker(self):
         if not self.get("status"):
             return
+        current_time = (
+            datetime.now(pytz.timezone(self.config["time"]))
+            .replace(microsecond=0)
+            .time()
+        )
         usernames = self.config["usernames"]
         for username in usernames:
             try:
                 await self.client.get_entity(username)
             except ValueError:
-                logging.warning(f"{username} is incorrect")
                 chan = await self.client(
                     CreateChannelRequest(
                         title="occupied shadow",
@@ -78,12 +91,25 @@ class CheckerUsernamesMod(loader.Module):
                 )
                 await self.client(UpdateUsernameRequest(chan.chats[0].id, username))
                 await self.client.send_message(chan.chats[0].id, self.config["text"])
+                await self.inline.bot.send_message(
+                    self._tg_id,
+                    self.strings("catching").format(
+                        user=(await self.client.get_entity(chan.chats[0].id)).username,
+                        time=current_time,
+                    ),
+                )
                 continue
 
     async def cusercmd(self, message: Message):
+        """Off/On checker username"""
         if self.get("status"):
             await utils.answer(message, self.strings("off"))
             return self.set("status", False)
         else:
             await utils.answer(message, self.strings("on"))
             self.set("status", True)
+
+    async def timezonescmd(self, message: Message):
+        """All timezones for config"""
+        await message.delete()
+        await self.invoke("e", "import pytz; pytz.all_timezones", message.peer_id)

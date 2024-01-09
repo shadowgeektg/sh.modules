@@ -17,7 +17,7 @@
 # meta banner: https://i.imgur.com/fdEskim.jpeg
 
 
-import openai
+import openai  # type: ignore
 from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 
