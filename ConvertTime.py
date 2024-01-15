@@ -62,6 +62,6 @@ class ConvertTimeMod(loader.Module):
         args = utils.get_args_raw(message)
         try:
             time_values = int(args)
-            await convert(message, time_values)
+            await convert(self, message, time_values)
         except (ValueError, IndexError):
             await utils.answer(message, self.strings("no_args"))

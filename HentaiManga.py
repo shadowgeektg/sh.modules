@@ -18,7 +18,7 @@
 from .. import loader, utils  # type: ignore
 from telethon.tl.types import Message  # type: ignore
 from ..inline.types import InlineCall  # type: ignore
-import requests
+import requests  # type: ignore
 
 
 async def request(url: str = "https://janda.sinkaroid.org/3hentai/random") -> dict:
