@@ -58,7 +58,7 @@ class ConvertTimeMod(loader.Module):
     }
 
     async def ctimecmd(self, message: Message):
-        """ctime <time for convert>"""
+        """ctime <int: time for convert>"""
         args = utils.get_args_raw(message)
         try:
             time_values = int(args)
