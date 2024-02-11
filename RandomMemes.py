@@ -35,8 +35,9 @@ class RandomMemesMod(loader.Module):
     async def randmemescmd(self, message: Message):
         """See random memes"""
         async with self._client.conversation(self.memes_bot) as conv:
-            await conv.send_message("/start")
+            msg = await conv.send_message("/start")
             phtmem = await conv.get_response()
-            await conv.mark_read()
+            await msg.delete()
+            await phtmem.delete()
             await message.delete()
             await utils.answer(message, phtmem)
