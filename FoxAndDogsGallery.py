@@ -16,11 +16,9 @@
 # scope: hikka_only
 # meta banner: https://i.imgur.com/nZalKg2.jpeg
 
-from .. import loader, utils
-
 import requests
 import random
-
+from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 
 

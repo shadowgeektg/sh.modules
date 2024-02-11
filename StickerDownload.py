@@ -31,11 +31,11 @@ class StickerDownloadMod(loader.Module):
     }
     strings_ru = {"filerr": "<b>😥 Укажи стикер реплаем на него</b>"}
 
-    memes_bot = "@Stickerdownloadbot"
-    download_bot = "@Stickerdownloadbot"
+    def __init__(self):
+        self.bot = "@Stickerdownloadbot"
 
     async def on_dlmod(self):
-        await utils.dnd(self._client, self.download_bot, True)
+        await utils.dnd(self._client, self.bot, True)
 
     async def stickdowncmd(self, message: Message):
         """stickdown <reply for sticker>"""
@@ -45,7 +45,7 @@ class StickerDownloadMod(loader.Module):
             return
 
         try:
-            async with self._client.conversation(self.download_bot) as conv:
+            async with self._client.conversation(self.bot) as conv:
                 reply = await message.get_reply_message()
                 await conv.send_message(reply)
                 phtmem = await conv.get_response()

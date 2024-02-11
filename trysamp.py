@@ -15,10 +15,11 @@
 # meta developer: @shadow_modules
 # meta banner: https://i.imgur.com/aGGx93G.jpeg
 
+import random
 from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
-import random
 
+tryrandom = ["Удачно", "Не удачно", "Не удачно", "Удачно"]
 
 @loader.tds
 class TrySampMod(loader.Module):
@@ -28,8 +29,7 @@ class TrySampMod(loader.Module):
 
     async def trycmd(self, message: Message):
         """try you luck"""
-        tryrandom = random.choice(["Удачно", "Не удачно", "Не удачно", "Удачно"])
         args = utils.get_args_raw(message)
         await utils.answer(
-            message, f"<b>{tryrandom} | {args}</b>" if args else f"<b>{tryrandom}</b>"
+            message, f"<b>{random.choice(tryrandom)} | {args}</b>" if args else f"<b>{random.choice(tryrandom)}</b>"
         )

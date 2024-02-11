@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .. import loader, utils
 import asyncio
+from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 from ..inline.types import InlineCall  # type: ignore
 
@@ -147,14 +147,9 @@ class NewsLetterMod(loader.Module):
 
     async def newsdelaycmd(self, message: Message):
         """Delayed mailing and photos"""
-        chats = self.config["chats"]
-        url = self.config["url"]
-        delay = self.config["delay"]
-        text = self.config["text"]
-
-        if not delay:
+        if not self.config["delay"]:
             return await utils.answer(message, self.strings("no_delay"))
-        if not text:
+        if not self.config["text"]:
             return await utils.answer(message, self.strings("no_text"))
         if self.get("status"):
             await utils.answer(message, self.strings("off"))
@@ -162,13 +157,12 @@ class NewsLetterMod(loader.Module):
         else:
             await utils.answer(message, self.strings("on"))
             self.set("status", True)
-
         while True:
             if not self.get("status"):
                 break
-            for chat in chats:
-                await self.client.send_file(chat, url, caption=text)
-                await asyncio.sleep(delay)
+            for chat in self.config["chats"]:
+                await self.client.send_file(chat, self.config["url"], caption=self.config["text"])
+                await asyncio.sleep(self.config["delay"])
 
     async def inline__callAnswer(self, call: InlineCall, value: str):
         self.db.set(__name__, "warn", True)

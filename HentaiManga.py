@@ -15,10 +15,10 @@
 # meta developer: @shadow_modules, @toxicuse, @vsecoder
 # meta banner: https://i.imgur.com/8UYznku.jpeg
 
+import requests  # type: ignore
 from .. import loader, utils  # type: ignore
 from telethon.tl.types import Message  # type: ignore
 from ..inline.types import InlineCall  # type: ignore
-import requests  # type: ignore
 
 
 async def request(url: str = "https://janda.sinkaroid.org/3hentai/random") -> dict:

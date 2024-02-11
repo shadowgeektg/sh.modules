@@ -15,12 +15,12 @@
 # meta developer: @shadow_modules
 # meta banner: https://i.imgur.com/aGGx93G.jpeg
 
+import pytz  # type: ignore
 from .. import loader, utils
 from telethon.tl.types import Message  # type: ignore
 from telethon.tl.functions.channels import CreateChannelRequest  # type: ignore
 from telethon.tl.functions.channels import UpdateUsernameRequest  # type: ignore
 from datetime import datetime
-import pytz  # type: ignore
 
 
 @loader.tds

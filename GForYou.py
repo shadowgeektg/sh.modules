@@ -34,11 +34,9 @@ class GYForYouMod(loader.Module):
     }
 
     async def googlecmd(self, message: Message):
-        """.google <args>"""
-        args = utils.get_args_raw(message)
+        """<args>"""
+        args = utils.get_args_raw(message).replace(" ", "+")
         if not args:
             await utils.answer(message, self.strings("no_args"))
             return
-        g = args.replace(" ", "+")
-        google = f"https://track24.ru/google/?q={g}"
-        await utils.answer(message, self.strings("google") + google)
+        await utils.answer(message, self.strings("google") + f"https://track24.ru/google/?q={args}")

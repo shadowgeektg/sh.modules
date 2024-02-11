@@ -17,10 +17,8 @@
 # scope: hikka_min 1.3.0
 # meta banner: https://i.imgur.com/GLgp9u1.jpeg
 
-from .. import loader, utils
-
 import logging
-
+from .. import loader, utils
 from telethon.tl.functions.channels import CreateChannelRequest  # type: ignore
 from telethon.tl.types import Message  # type: ignore
 

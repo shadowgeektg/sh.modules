@@ -27,14 +27,16 @@ class RandomMemesMod(loader.Module):
     """RandomMemes"""
 
     strings = {"name": "RandomMemes"}
-    memes_bot = "@ffmemesbot"
+    
+    def __init__(self):
+        self.bot = "@ffmemesbot"
 
     async def on_dlmod(self):
-        await utils.dnd(self._client, self.memes_bot, True)
+        await utils.dnd(self._client, self.bot, True)
 
     async def randmemescmd(self, message: Message):
         """See random memes"""
-        async with self._client.conversation(self.memes_bot) as conv:
+        async with self._client.conversation(self.bot) as conv:
             msg = await conv.send_message("/start")
             phtmem = await conv.get_response()
             await msg.delete()

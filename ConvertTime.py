@@ -60,8 +60,5 @@ class ConvertTimeMod(loader.Module):
     async def ctimecmd(self, message: Message):
         """ctime <int: time for convert>"""
         args = utils.get_args_raw(message)
-        try:
-            time_values = int(args)
-            await convert(self, message, time_values)
-        except (ValueError, IndexError):
-            await utils.answer(message, self.strings("no_args"))
+        time_values = int(args)
+        await convert(self, message, time_values)
